@@ -4,6 +4,7 @@
 
 <form action="{{=URL(request.application, 'default', 'index')}}">
 	<select name="id" onchange="this.form.submit()">
+		<option value="">Escolha o local...</option>
 		{{for venue in get_venues():}}
 			<option {{="selected='True'" if 'id' in request.vars and str(venue[:2]) == request.vars['id'] else ''}} value="{{=venue[:2]}}">
 				{{=venue}}
