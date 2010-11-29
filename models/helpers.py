@@ -3,7 +3,6 @@ import urllib
 def get_people(letter, venue):
 	url = '''
 	http://vestibular.ufrgs.br/cv2011/fiscais_coordenadores/Fiscais/fi2011_%s.htm''' % letter.upper()
-	print url
 	sock = urllib.urlopen(url)
 	lines = []
 	for line in sock.readlines():
@@ -13,5 +12,14 @@ def get_people(letter, venue):
 			if linesp[2].strip() == str(venue):
 				lines.append(linesp[1])
 	
+	return lines
+
+def get_venues():
+	url = 'http://www.vestibular.ufrgs.br/cv2011/fiscais_coordenadores/Fiscais/LOCA2011.HTM'
+	sock = urllib.urlopen(url)
+	lines = []
+	for line in sock.readlines():
+		if line[0] != '<':
+			lines.append(line[:40])
 	return lines
 
