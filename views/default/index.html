@@ -3,7 +3,7 @@
 <h2>Selecione o local: </h2>
 
 <form action="index">
-	<select name="id">
+	<select name="id" onchange="this.form.submit()">
 		{{for venue in get_venues():}}
 			{{if 'id' in request.vars:}}
 			<option {{="selected='True'" if 'id' in request.vars and str(venue[:2]) == request.vars['id'] else ''}} value="{{=venue[:2]}}">
@@ -12,7 +12,6 @@
 			{{pass}}
 		{{pass}}
 	</select>
-	<input type="submit"></input>
 </form>
 
 <hr/>
