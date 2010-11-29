@@ -6,6 +6,7 @@ def get_people(letter, venue):
 	sock = urllib.urlopen(url)
 	lines = []
 	for line in sock.readlines():
+		line = line.decode('windows-1252').encode('utf-8')
 		if line[:3] == ' 00':
 			linesp = line.split('  ')
 			linesp = filter(lambda x: x!='', linesp)
@@ -20,6 +21,7 @@ def get_venues():
 	lines = []
 	for line in sock.readlines():
 		if line[0] != '<':
+			line = line.decode('windows-1252').encode('utf-8')
 			lines.append(line[:40])
 	return lines
 
