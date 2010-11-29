@@ -2,12 +2,23 @@
 
 <h2>Selecione o local: </h2>
 
-<select name="venue">
-	{{for venue in get_venues():}}
-		<option value="{{=venue[:2]}}">{{=venue}}</option>
-	{{pass}}
-</select>
+<form action="index">
+	<select name="id">
+		{{for venue in get_venues():}}
+			{{if 'id' in request.vars:}}
+			<option {{="selected='True'" if 'id' in request.vars and str(venue[:2]) == request.vars['id'] else ''}} value="{{=venue[:2]}}">
+				{{=venue}}
+			</option>
+			{{pass}}
+		{{pass}}
+	</select>
+	<input type="submit"></input>
+</form>
 
-{{if 'people' in request.vars:}}
-	{{=people}}
+<hr/>
+
+<ul>
+{{for person in people:}}
+	<li>{{=person}}</li>
 {{pass}}
+</ul>

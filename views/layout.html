@@ -18,7 +18,6 @@
       {{#------ Layout 3 from http://www.ez-css.org/layouts ------}}
       <div class="ez-wr">
 	<div class="ez-box" id="header">
-	  {{try:}}{{=auth.navbar(action=URL(request.application,'default','user'))}}{{except:pass}}
           <h1>
             <a href="">{{=response.title or 'response.title'}}</a>
           </h1>            
