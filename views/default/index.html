@@ -1,16 +1,21 @@
 {{extend 'layout.html'}}
 
+<script>
+    jQuery(document).ready(function(){jQuery('.loader').hide()});
+</script>
+
 <h2>Selecione o local: </h2>
 
 <form action="{{=URL(request.application, 'default', 'index')}}">
-	<select name="id" onchange="this.form.submit()">
+    <select name="id" class="selector" onchange="jQuery('.loader').show(); this.form.submit()">
 		<option value="">Escolha o local...</option>
 		{{for venue in get_venues():}}
 			<option {{="selected='True'" if 'id' in request.vars and str(venue[:2]) == request.vars['id'] else ''}} value="{{=venue[:2]}}">
 				{{=venue}}
 			</option>
 		{{pass}}
-	</select>
+    </select>
+    {{=IMG(_src=URL(request.application, 'static', '1-0.gif'), _class='loader')}}
 </form>
 
 <hr/>
